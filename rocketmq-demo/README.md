@@ -1,0 +1,37 @@
+
+# rocketmq parameter
+
+    
+*   (MUST) name server for rocketMQ, formats: host:port;host:port    
+   `spring.rocketmq.nameServer=192.168.1.250:9876`
+
+##  producer    
+
+*    (MUST) name of producer   
+   `spring.rocketmq.producer.group=my-group`   
+
+     millis of send message timeout     
+     default : 3000 ms     
+*   `spring.rocketmq.producer.sendMsgTimeout = 3000`
+
+    Compress message body threshold, namely, message body larger than 4k will be compressed on default.    
+    default : 1024 * 4  
+*   `spring.rocketmq.producer.compressMsgBodyOverHowmuch = 1024 * 4`    
+    Maximum number of retry to perform internally before claiming sending failure in synchronous mode.   
+    This may potentially cause message duplication which is up to application developers to resolve.       
+    default : 2 
+*   `spring.rocketmq.producer.retryTimesWhenSendFailed  = 2`    
+    Maximum number of retry to perform internally before claiming sending failure in asynchronous mode. 
+    This may potentially cause message duplication which is up to application developers to resolve.    
+    default : 2 
+*   `spring.rocketmq.producer.retryTimesWhenSendAsyncFailed = 2`   
+    Indicate whether to retry another broker on sending failure internally. 
+    default : false 
+*   `spring.rocketmq.producer.retryAnotherBrokerWhenNotStoreOk = false`   
+    Maximum allowed message size in bytes.  
+    default : 1024 * 1024 * 4; // 4M    
+*   `spring.rocketmq.producer.maxMessageSize = 1024 * 1024 * 4` 
+
+##  consume    
+*   `spring.application.name=rocketmq-consume-demo` 
+
