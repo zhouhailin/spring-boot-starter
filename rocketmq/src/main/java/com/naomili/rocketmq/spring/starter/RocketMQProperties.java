@@ -17,12 +17,9 @@
 
 package com.naomili.rocketmq.spring.starter;
 
-import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@SuppressWarnings("WeakerAccess")
 @ConfigurationProperties(prefix = "spring.rocketmq")
-@Data
 public class RocketMQProperties {
 
     /**
@@ -32,7 +29,39 @@ public class RocketMQProperties {
 
     private Producer producer;
 
-    @Data
+    public RocketMQProperties() {
+    }
+
+
+    public RocketMQProperties(String nameServer, Producer producer) {
+        this.nameServer = nameServer;
+        this.producer = producer;
+    }
+
+    public String getNameServer() {
+        return nameServer;
+    }
+
+    public void setNameServer(String nameServer) {
+        this.nameServer = nameServer;
+    }
+
+    public Producer getProducer() {
+        return producer;
+    }
+
+    public void setProducer(Producer producer) {
+        this.producer = producer;
+    }
+
+    @Override
+    public String toString() {
+        return "RocketMQProperties{" +
+                "nameServer='" + nameServer + '\'' +
+                ", producer=" + producer +
+                '}';
+    }
+
     public static class Producer {
 
         /**
@@ -72,5 +101,86 @@ public class RocketMQProperties {
          */
         private int maxMessageSize = 1024 * 1024 * 4; // 4M
 
+        public Producer() {
+        }
+
+        public Producer(String group, int sendMsgTimeout, int compressMsgBodyOverHowmuch, int retryTimesWhenSendFailed, int retryTimesWhenSendAsyncFailed, boolean retryAnotherBrokerWhenNotStoreOk, int maxMessageSize) {
+            this.group = group;
+            this.sendMsgTimeout = sendMsgTimeout;
+            this.compressMsgBodyOverHowmuch = compressMsgBodyOverHowmuch;
+            this.retryTimesWhenSendFailed = retryTimesWhenSendFailed;
+            this.retryTimesWhenSendAsyncFailed = retryTimesWhenSendAsyncFailed;
+            this.retryAnotherBrokerWhenNotStoreOk = retryAnotherBrokerWhenNotStoreOk;
+            this.maxMessageSize = maxMessageSize;
+        }
+
+        public String getGroup() {
+            return group;
+        }
+
+        public void setGroup(String group) {
+            this.group = group;
+        }
+
+        public int getSendMsgTimeout() {
+            return sendMsgTimeout;
+        }
+
+        public void setSendMsgTimeout(int sendMsgTimeout) {
+            this.sendMsgTimeout = sendMsgTimeout;
+        }
+
+        public int getCompressMsgBodyOverHowmuch() {
+            return compressMsgBodyOverHowmuch;
+        }
+
+        public void setCompressMsgBodyOverHowmuch(int compressMsgBodyOverHowmuch) {
+            this.compressMsgBodyOverHowmuch = compressMsgBodyOverHowmuch;
+        }
+
+        public int getRetryTimesWhenSendFailed() {
+            return retryTimesWhenSendFailed;
+        }
+
+        public void setRetryTimesWhenSendFailed(int retryTimesWhenSendFailed) {
+            this.retryTimesWhenSendFailed = retryTimesWhenSendFailed;
+        }
+
+        public int getRetryTimesWhenSendAsyncFailed() {
+            return retryTimesWhenSendAsyncFailed;
+        }
+
+        public void setRetryTimesWhenSendAsyncFailed(int retryTimesWhenSendAsyncFailed) {
+            this.retryTimesWhenSendAsyncFailed = retryTimesWhenSendAsyncFailed;
+        }
+
+        public boolean isRetryAnotherBrokerWhenNotStoreOk() {
+            return retryAnotherBrokerWhenNotStoreOk;
+        }
+
+        public void setRetryAnotherBrokerWhenNotStoreOk(boolean retryAnotherBrokerWhenNotStoreOk) {
+            this.retryAnotherBrokerWhenNotStoreOk = retryAnotherBrokerWhenNotStoreOk;
+        }
+
+        public int getMaxMessageSize() {
+            return maxMessageSize;
+        }
+
+        public void setMaxMessageSize(int maxMessageSize) {
+            this.maxMessageSize = maxMessageSize;
+        }
+
+        @Override
+        public String toString() {
+            return "Producer{" +
+                    "group='" + group + '\'' +
+                    ", sendMsgTimeout=" + sendMsgTimeout +
+                    ", compressMsgBodyOverHowmuch=" + compressMsgBodyOverHowmuch +
+                    ", retryTimesWhenSendFailed=" + retryTimesWhenSendFailed +
+                    ", retryTimesWhenSendAsyncFailed=" + retryTimesWhenSendAsyncFailed +
+                    ", retryAnotherBrokerWhenNotStoreOk=" + retryAnotherBrokerWhenNotStoreOk +
+                    ", maxMessageSize=" + maxMessageSize +
+                    '}';
+        }
     }
 }

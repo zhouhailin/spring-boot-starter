@@ -20,13 +20,9 @@ package com.naomili.rocketmq.spring.starter.annotation;
 import com.naomili.rocketmq.spring.starter.enums.ConsumeMode;
 import com.naomili.rocketmq.spring.starter.enums.SelectorType;
 import org.apache.rocketmq.common.filter.ExpressionType;
-
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
 import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
+
+import java.lang.annotation.*;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

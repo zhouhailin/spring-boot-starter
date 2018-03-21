@@ -1,38 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.naomili.rocketmq</groupId>
-	<artifactId>spring-boot-starter-rocketmq</artifactId>
-	<version>1.0.0</version>
+    <groupId>com.naomili.rocketmq</groupId>
+    <artifactId>spring-boot-starter-rocketmq</artifactId>
+    <version>1.1.0</version>
 
-	<name>Spring Boot Rocket Starter</name>
-	<description>Starter for messaging using Apache RocketMQ</description>
-	<url>https://github.com/apache/rocketmq-externals/tree/master/spring-boot-starter-rocketmq</url>
+    <name>Spring Boot Rocket Starter</name>
+    <description>Starter for messaging using Apache RocketMQ</description>
+    <url>https://github.com/apache/rocketmq-externals/tree/master/spring-boot-starter-rocketmq</url>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.0.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.0.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
-	<properties>
+    <properties>
         <java.version>1.8</java.version>
         <rocketmq-version>4.2.0</rocketmq-version>
 
 
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 
-		<maven.compiler.source>${java.version}</maven.compiler.source>
-		<maven.compiler.target>${java.version}</maven.compiler.target>
-		<additionalparam>-Xdoclint:none</additionalparam>
-	</properties>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <additionalparam>-Xdoclint:none</additionalparam>
+        <compilerArgument>-Xlint:unchecked</compilerArgument>
+    </properties>
 
-	<dependencies>
+    <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -63,17 +64,11 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-	</dependencies>
+    </dependencies>
 
 
     <build>

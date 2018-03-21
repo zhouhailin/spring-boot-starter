@@ -20,17 +20,13 @@ package com.naomili.rocketmq.spring.starter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.naomili.rocketmq.spring.starter.annotation.RocketMQMessageListener;
 import com.naomili.rocketmq.spring.starter.core.DefaultRocketMQListenerContainer;
-import com.naomili.rocketmq.spring.starter.core.RocketMQTemplate;
 import com.naomili.rocketmq.spring.starter.core.RocketMQListener;
-
-import java.util.Map;
-import java.util.Objects;
-import java.util.concurrent.atomic.AtomicLong;
-import javax.annotation.Resource;
-import lombok.extern.slf4j.Slf4j;
+import com.naomili.rocketmq.spring.starter.core.RocketMQTemplate;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.impl.MQClientAPIImpl;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
@@ -52,14 +48,20 @@ import org.springframework.core.annotation.Order;
 import org.springframework.core.env.StandardEnvironment;
 import org.springframework.util.Assert;
 
+import javax.annotation.Resource;
+import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicLong;
+
 import static com.naomili.rocketmq.spring.starter.core.DefaultRocketMQListenerContainerConstants.*;
 
 @Configuration
 @EnableConfigurationProperties(RocketMQProperties.class)
 @ConditionalOnClass(MQClientAPIImpl.class)
 @Order
-@Slf4j
 public class RocketMQAutoConfiguration {
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Bean
     @ConditionalOnClass(DefaultMQProducer.class)
@@ -95,8 +97,8 @@ public class RocketMQAutoConfiguration {
     @ConditionalOnMissingBean(name = "rocketMQTemplate")
     public RocketMQTemplate rocketMQTemplate(DefaultMQProducer mqProducer,
                                              @Autowired(required = false)
-        @Qualifier("rocketMQMessageObjectMapper")
-            ObjectMapper objectMapper) {
+                                             @Qualifier("rocketMQMessageObjectMapper")
+                                                     ObjectMapper objectMapper) {
         RocketMQTemplate rocketMQTemplate = new RocketMQTemplate();
         rocketMQTemplate.setProducer(mqProducer);
         if (Objects.nonNull(objectMapper)) {
@@ -112,6 +114,9 @@ public class RocketMQAutoConfiguration {
     @ConditionalOnProperty(prefix = "spring.rocketmq", value = "nameServer")
     @Order
     public static class ListenerContainerConfiguration implements ApplicationContextAware, InitializingBean {
+
+        private final Logger log = LoggerFactory.getLogger(this.getClass());
+
         private ConfigurableApplicationContext applicationContext;
 
         private AtomicLong counter = new AtomicLong(0);
@@ -129,7 +134,7 @@ public class RocketMQAutoConfiguration {
 
         @Autowired(required = false)
         public ListenerContainerConfiguration(
-            @Qualifier("rocketMQMessageObjectMapper") ObjectMapper objectMapper) {
+                @Qualifier("rocketMQMessageObjectMapper") ObjectMapper objectMapper) {
             this.objectMapper = objectMapper;
         }
 

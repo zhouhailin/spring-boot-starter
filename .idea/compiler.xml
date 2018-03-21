@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="rocketmq" />
+        <module name="rocketmq-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="rocketmq" target="1.8" />
+      <module name="rocketmq-demo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
